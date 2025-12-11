@@ -7,12 +7,14 @@ try:
         host="localhost",
         user="root",
         password="Ossy#12?",
-        database = 'alx_book_store'
+        # database = 'alx_book_store'
     )
-    mycursor = mydb.cursor()
-     # Create the database (safe even if it already exists)
-    mycursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
-    print(" Database 'alx_book_store' created successfully! ")
+
+    if mydb.is_connected():
+        mycursor = mydb.cursor()
+        # This line creates the database if it doesn't exist
+        mycursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+        print("Database alx_book_store created successfully or already exists")
 
 except mysql.connector.Error as e:
     print(f"Error: {e}")
